@@ -1,0 +1,286 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
+import 'package:loginandprofilinfirbase/firebase/login.dart';
+import 'package:loginandprofilinfirbase/home.dart';
+
+class signup extends StatefulWidget {
+  const signup({super.key});
+
+  @override
+  State<signup> createState() => _signupState();
+}
+
+class _signupState extends State<signup> {
+  ///
+  bool _obscureText = true;
+  final _name = TextEditingController();
+  final _email = TextEditingController();
+  final _password = TextEditingController();
+  final _confirm_password = TextEditingController();
+  Future sinIn() async {
+    if (check_enter_user()) {
+      if (passwordConfirn()) {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+            email: _email.text.trim(), password: _password.text.trim());
+        Get.off(home());
+      } else {
+        return showModalBottomSheet(
+            context: context,
+            builder: (context) {
+              return const SizedBox(
+                height: 300,
+                width: double.infinity,
+                child: Center(
+                  child: Text(
+                    "يوجد اختلاف الرمز السري",
+                  ),
+                ),
+              );
+            });
+      }
+    } else {
+      return showModalBottomSheet(
+          context: context,
+          builder: (context) {
+            return const SizedBox(
+              height: 300,
+              width: double.infinity,
+              child: Center(
+                child: Text(
+                  "لم تقم باضافه ألبريد ألالكتروني او كلمة المرور حاول مجددا ",
+                ),
+              ),
+            );
+          });
+    }
+  }
+
+  bool passwordConfirn() {
+    if (_password.text.trim() == _confirm_password.text.trim()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  bool check_enter_user() {
+    if (_email.text.trim() != "" &&
+        _password.text.trim() != "" &&
+        _confirm_password.text.trim() != "") {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _email.dispose();
+    _password.dispose();
+    _confirm_password.dispose();
+  }
+
+  void go_to_login() {
+    Get.off(login());
+  }
+
+  //////////////////////
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: Center(
+          child: ListView(
+            children: [
+              //img
+              Image.asset(
+                "assets/signup.avif",
+                height: 250,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              //title
+              Center(
+                child: Text(
+                  "Sign in",
+                ),
+              ),
+              //subtitle
+
+              const SizedBox(
+                height: 20,
+              ),
+              //name
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                child: Container(
+                  height: 65,
+                  width: 105,
+                  decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                      borderRadius: BorderRadius.circular(12)),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: TextField(
+                      controller: _name,
+                      decoration: const InputDecoration(
+                          border: InputBorder.none, hintText: "name"),
+                    ),
+                  ),
+                ),
+              ),
+
+              const SizedBox(
+                height: 20,
+              ),
+              //email textfild
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                child: Container(
+                  height: 65,
+                  width: 105,
+                  decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                      borderRadius: BorderRadius.circular(12)),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: TextField(
+                      controller: _email,
+                      decoration: const InputDecoration(
+                          border: InputBorder.none, hintText: "E-mail"),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              //password textfild
+
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                      borderRadius: BorderRadius.circular(12)),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: TextField(
+                      controller: _password,
+                      obscureText: _obscureText,
+                      decoration: InputDecoration(
+                        labelText: 'Pssword',
+                        border: InputBorder.none,
+                        //  OutlineInputBorder(),
+                        prefixIcon: const Icon(Icons.lock),
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            _obscureText
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _obscureText = !_obscureText;
+                            });
+                          },
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              // confirm password textfild
+
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                      borderRadius: BorderRadius.circular(12)),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: TextField(
+                      controller: _confirm_password,
+                      obscureText: _obscureText,
+                      decoration: InputDecoration(
+                        labelText: 'confirm Pssword',
+                        border: InputBorder.none,
+                        //  OutlineInputBorder(),
+                        prefixIcon: const Icon(Icons.lock),
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            _obscureText
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _obscureText = !_obscureText;
+                            });
+                          },
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 40,
+              ),
+              // sign in botton
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                child: InkWell(
+                  onTap: sinIn,
+                  child: Container(
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                        color: Colors.deepPurple[600],
+                        borderRadius: BorderRadius.circular(12)),
+                    child: Center(
+                        child: Text(
+                      "Sign in",
+                    )),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              // text  to sign up
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "I have an account",
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  InkWell(
+                    onTap: go_to_login,
+                    child: Text(
+                      "Go to login",
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 50,
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
