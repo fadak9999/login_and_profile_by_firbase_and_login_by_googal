@@ -1,19 +1,22 @@
 // ignore_for_file: avoid_print
-
-import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 import 'package:flutter/material.dart';
-import 'package:loginandprofilinfirbase/pagesnav/edit_nav.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
+import 'package:loginandprofilinfirbase/class_nav/gridview_in_home_nav.dart';
+import 'package:loginandprofilinfirbase/pagesnav/AddFirebase.dart';
 
-class Home extends StatefulWidget {
-  const Home({super.key});
+// ignore: camel_case_types
+class Home_nav extends StatefulWidget {
+  const Home_nav({super.key});
 
   @override
-  State<Home> createState() => _HomeState();
+  State<Home_nav> createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeState extends State<Home_nav> {
+  ///////////////
+
   late List<Map<String, dynamic>> data = [];
   @override
   void initState() {
@@ -21,7 +24,9 @@ class _HomeState extends State<Home> {
     super.initState();
   }
 
-///////////////////////////////////////////////////////////////////////
+  /////
+  bool f = false;
+//////////////////////___________     getData     ______________/////////////////////////////////////////////////
   Future<void> getData() async {
     try {
       QuerySnapshot querySnapshot =
@@ -38,7 +43,7 @@ class _HomeState extends State<Home> {
     }
   }
 
-//////////////////////////////////////////////////////////////////
+////////////////////////_______deleteInFirebase_________//////////////////////////////////////////
   Future<void> deleteInFirebase(int i) async {
     try {
       await FirebaseFirestore.instance
@@ -53,7 +58,19 @@ class _HomeState extends State<Home> {
     }
   }
 
-/////////////////////////////////////////////////////////////////
+///////////////////////_________task_____//////////////////////////////////////////
+
+  Widget task() {
+    if (data.isEmpty) {
+      return const Center(
+        child: Text("it's empty"),
+      );
+    } else {
+      return const gridview_in_home_nav();
+    }
+  }
+
+////////////////////////////////////////////////
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +78,7 @@ class _HomeState extends State<Home> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.blueAccent,
         onPressed: () {
-          //  Navigator.of(context).pushNamed("add_page");
+          Get.to(const AddFirebase());
         },
         child: const Icon(
           Icons.add,
@@ -74,52 +91,10 @@ class _HomeState extends State<Home> {
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-              Color.fromARGB(255, 42, 155, 192),
+              Color.fromARGB(255, 113, 186, 210),
               Color.fromARGB(255, 161, 54, 232)
             ])),
-        child: GridView.builder(
-            itemCount: data.length,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2),
-            itemBuilder: (context, i) {
-              return InkWell(
-                onLongPress: () {
-                  AwesomeDialog(
-                    context: context,
-                    dialogType: DialogType.question,
-                    animType: AnimType.bottomSlide,
-                    title: "What do you want to choose?",
-                    btnOkText: "Edit",
-                    btnCancelText: "Delete",
-                    btnOkOnPress: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => EditFirebase(
-                              docid: data[i]['id'], Oldname: data[i]["name"])));
-                    },
-                    btnCancelOnPress: () {
-                      deleteInFirebase(i);
-                    },
-                  ).show();
-                },
-                child: Card(
-                  elevation: 10,
-                  child: Container(
-                    decoration: const BoxDecoration(
-                        gradient: LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                            colors: [
-                          Color.fromARGB(255, 161, 54, 232),
-                          Color.fromARGB(255, 42, 155, 192),
-                        ])),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [Center(child: Text("${data[i]['name']}"))],
-                    ),
-                  ),
-                ),
-              );
-            }),
+        child: task(),
       ),
     );
   }

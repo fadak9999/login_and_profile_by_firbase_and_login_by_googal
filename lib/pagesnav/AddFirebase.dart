@@ -3,6 +3,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
+import 'package:loginandprofilinfirbase/home.dart';
 
 class AddFirebase extends StatefulWidget {
   const AddFirebase({super.key});
@@ -87,6 +90,7 @@ class _AddFirebaseState extends State<AddFirebase> {
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       addUser();
+                      Get.off(const home());
                     }
                   },
                   child: const Text(
