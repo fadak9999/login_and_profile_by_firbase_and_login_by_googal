@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:loginandprofilinfirbase/firebase/login.dart';
 import 'package:loginandprofilinfirbase/home.dart';
 
+// ignore: camel_case_types
 class auth extends StatefulWidget {
   const auth({super.key});
 
@@ -10,6 +11,7 @@ class auth extends StatefulWidget {
   State<auth> createState() => _authState();
 }
 
+// ignore: camel_case_types
 class _authState extends State<auth> {
   @override
   Widget build(BuildContext context) {

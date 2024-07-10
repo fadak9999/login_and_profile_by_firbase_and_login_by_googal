@@ -5,6 +5,7 @@ import 'package:get/get_navigation/get_navigation.dart';
 import 'package:loginandprofilinfirbase/firebase/login.dart';
 import 'package:loginandprofilinfirbase/home.dart';
 
+// ignore: camel_case_types
 class signup extends StatefulWidget {
   const signup({super.key});
 
@@ -12,19 +13,21 @@ class signup extends StatefulWidget {
   State<signup> createState() => _signupState();
 }
 
+// ignore: camel_case_types
 class _signupState extends State<signup> {
   ///
   bool _obscureText = true;
   final _name = TextEditingController();
   final _email = TextEditingController();
   final _password = TextEditingController();
+  // ignore: non_constant_identifier_names
   final _confirm_password = TextEditingController();
   Future sinIn() async {
     if (check_enter_user()) {
       if (passwordConfirn()) {
         await FirebaseAuth.instance.createUserWithEmailAndPassword(
             email: _email.text.trim(), password: _password.text.trim());
-        Get.off(home());
+        Get.off(const home());
       } else {
         return showModalBottomSheet(
             context: context,
@@ -65,6 +68,7 @@ class _signupState extends State<signup> {
     }
   }
 
+  // ignore: non_constant_identifier_names
   bool check_enter_user() {
     if (_email.text.trim() != "" &&
         _password.text.trim() != "" &&
@@ -83,8 +87,9 @@ class _signupState extends State<signup> {
     _confirm_password.dispose();
   }
 
+  // ignore: non_constant_identifier_names
   void go_to_login() {
-    Get.off(login());
+    Get.off(const login());
   }
 
   //////////////////////
@@ -105,7 +110,7 @@ class _signupState extends State<signup> {
                 height: 10,
               ),
               //title
-              Center(
+              const Center(
                 child: Text(
                   "Sign in",
                 ),
@@ -246,7 +251,7 @@ class _signupState extends State<signup> {
                     decoration: BoxDecoration(
                         color: Colors.deepPurple[600],
                         borderRadius: BorderRadius.circular(12)),
-                    child: Center(
+                    child: const Center(
                         child: Text(
                       "Sign in",
                     )),
@@ -260,7 +265,7 @@ class _signupState extends State<signup> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     "I have an account",
                   ),
                   const SizedBox(
@@ -268,7 +273,7 @@ class _signupState extends State<signup> {
                   ),
                   InkWell(
                     onTap: go_to_login,
-                    child: Text(
+                    child: const Text(
                       "Go to login",
                     ),
                   ),

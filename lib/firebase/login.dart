@@ -1,12 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:loginandprofilinfirbase/firebase/signup.dart';
 import 'package:loginandprofilinfirbase/home.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+// ignore: camel_case_types
 class login extends StatefulWidget {
   const login({super.key});
 
@@ -14,6 +14,7 @@ class login extends StatefulWidget {
   State<login> createState() => _loginState();
 }
 
+// ignore: camel_case_types
 class _loginState extends State<login> {
   //goodale..........
 
@@ -21,6 +22,7 @@ class _loginState extends State<login> {
     // Trigger the authentication flow
     final googleUser = await GoogleSignIn().signIn();
     if (googleUser == null) {
+      // ignore: use_build_context_synchronously
       return ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('You have not specified an account')));
     }
@@ -47,7 +49,7 @@ class _loginState extends State<login> {
     if (check_enter_user()) {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: _email.text.trim(), password: _password.text.trim());
-      Get.off(home());
+      Get.off(const home());
     } else {
       return showModalBottomSheet(
           context: context,
@@ -70,6 +72,7 @@ class _loginState extends State<login> {
     }
   }
 
+  // ignore: non_constant_identifier_names
   bool check_enter_user() {
     if (_email.text.trim() != "" && _password.text.trim() != "") {
       return true;
@@ -85,8 +88,9 @@ class _loginState extends State<login> {
     _password.dispose();
   }
 
+  // ignore: non_constant_identifier_names
   void go_to_signUp() {
-    Get.off(signup());
+    Get.off(const signup());
   }
 
   //
@@ -98,16 +102,16 @@ class _loginState extends State<login> {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               //imag
-              Container(
+              SizedBox(
                 height: 200,
                 width: 200,
                 child: Image.asset("assets/login1.avif"),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 70,
               ),
 
@@ -171,7 +175,7 @@ class _loginState extends State<login> {
                 ),
               ),
               //button login
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               InkWell(
@@ -180,51 +184,46 @@ class _loginState extends State<login> {
                   width: 100,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(70),
-                    color: Color.fromARGB(255, 188, 188, 188),
+                    color: const Color.fromARGB(255, 188, 188, 188),
                   ),
-                  child: Center(child: Text("Log in")),
+                  child: const Center(child: Text("Log in")),
                 ),
                 //login tap
                 onTap: () {
                   login();
                 },
               ),
-              SizedBox(
+              const SizedBox(
                 height: 60,
               ),
               Column(
                 children: [
-                  Container(
-                    child: const Text(
-                      "If you do not have a previous account",
-                      style: TextStyle(
-                          fontSize: 13,
-                          color: Color.fromARGB(255, 107, 119, 107)),
-                    ),
+                  const Text(
+                    "If you do not have a previous account",
+                    style: TextStyle(
+                        fontSize: 13,
+                        color: Color.fromARGB(255, 107, 119, 107)),
                   ),
-                  Container(
-                    child: TextButton(
-                        onPressed: () {
-                          Get.off(signup());
-                        },
-                        child: const Text(
-                          "Create a new account",
-                          style: TextStyle(
-                              color: Color.fromARGB(255, 54, 112, 236)),
-                        )),
-                  ),
+                  TextButton(
+                      onPressed: () {
+                        Get.off(const signup());
+                      },
+                      child: const Text(
+                        "Create a new account",
+                        style: TextStyle(
+                            color: Color.fromARGB(255, 54, 112, 236)),
+                      )),
                 ],
               ),
               //
 
               InkWell(
+                onTap: signInWithGoogle,
                 child: Image.network(
                   "https://53.fs1.hubspotusercontent-na1.net/hub/53/hubfs/image8-2.jpg?width=595&height=400&name=image8-2.jpg",
                   height: 100,
                   width: 100,
-                ),
-                //
-                onTap: signInWithGoogle, //googale
+                ), //googale
               )
 
               //

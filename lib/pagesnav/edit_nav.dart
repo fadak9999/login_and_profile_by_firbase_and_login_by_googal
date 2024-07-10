@@ -1,41 +1,47 @@
 // ignore_for_file: no_leading_underscores_for_local_identifiers, camel_case_types, non_constant_identifier_names, file_names, unused_element, avoid_print
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:loginandprofilinfirbase/home.dart';
 
-class AddFirebase extends StatefulWidget {
-  const AddFirebase({super.key});
+class EditFirebase extends StatefulWidget {
+  final String docid;
+  final String Oldname;
+  const EditFirebase({super.key, required this.docid, required this.Oldname});
 
   @override
-  State<AddFirebase> createState() => _AddFirebaseState();
+  State<EditFirebase> createState() => _EditFirebaseState();
 }
 
-class _AddFirebaseState extends State<AddFirebase> {
-  /////////////////////////////////////////////////////////////__////////////////////__________
-
-  final _addInFirebaseController = TextEditingController();
+class _EditFirebaseState extends State<EditFirebase> {
+  ////////////////////////////////////////////////////////////////////////
+  final _editInFirebaseController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
-    _addInFirebaseController.dispose();
+    _editInFirebaseController.dispose();
     super.dispose();
   }
 
-  // Create a CollectionReference called users that references the firestore collection
-  CollectionReference users = FirebaseFirestore.instance.collection('users');
-
-  Future<void> addUser() {
-    // Call the user's CollectionReference to add a new user
-    return users.add({
-      "name": _addInFirebaseController.text,
-      "id": FirebaseAuth.instance.currentUser!.uid
-    }).then((value) => ScaffoldMessenger.of(context)
-        .showSnackBar(const SnackBar(content: Text('Data ADD successfully'))));
+  @override
+  void initState() {
+    super.initState();
+    _editInFirebaseController.text = widget.Oldname;
   }
 
-////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+  CollectionReference users = FirebaseFirestore.instance.collection('users');
+
+  Future<void> EditUser() async {
+    await users
+        .doc(widget.docid)
+        .update({"name": _editInFirebaseController.text}).then((value) =>
+            ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Data Edit successfully'))));
+  }
+
+//////////////////////////////////////////////////////////////
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +49,7 @@ class _AddFirebaseState extends State<AddFirebase> {
         backgroundColor: Colors.deepPurple,
         centerTitle: true,
         title: const Text(
-          "Add in Firebase",
+          "Edit in Firebase",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
@@ -64,9 +70,9 @@ class _AddFirebaseState extends State<AddFirebase> {
               Padding(
                 padding: const EdgeInsets.all(20),
                 child: TextFormField(
-                  controller: _addInFirebaseController,
+                  controller: _editInFirebaseController,
                   decoration: const InputDecoration(
-                    labelText: 'Name',
+                    labelText: 'Edit',
                     border: OutlineInputBorder(),
                     prefixIcon: Icon(Icons.person),
                   ),
@@ -86,11 +92,15 @@ class _AddFirebaseState extends State<AddFirebase> {
                   ),
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      addUser();
+                      EditUser();
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const home()));
+
+                      setState(() {});
                     }
                   },
                   child: const Text(
-                    "ADD",
+                    "Edit ",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.white,

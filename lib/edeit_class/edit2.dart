@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+// ignore: camel_case_types
 class edet2 extends StatefulWidget {
   const edet2({super.key});
 
@@ -8,6 +9,7 @@ class edet2 extends StatefulWidget {
   State<edet2> createState() => _edet2State();
 }
 
+// ignore: camel_case_types
 class _edet2State extends State<edet2> {
   //
 
@@ -45,6 +47,7 @@ class _edet2State extends State<edet2> {
     prefs.setString('name', _nameController.text);
     prefs.setString('phone', _phoneController.text);
     prefs.setString('cv', _cvController.text);
+    // ignore: use_build_context_synchronously
     ScaffoldMessenger.of(context)
         .showSnackBar(const SnackBar(content: Text('Data saved successfully')));
   }
@@ -52,6 +55,9 @@ class _edet2State extends State<edet2> {
   ///
   @override
   Widget build(BuildContext context) {
+    const sizedBox = SizedBox(
+      height: 30,
+    );
     return Padding(
         padding: const EdgeInsets.all(30),
         child: Column(
@@ -82,7 +88,7 @@ class _edet2State extends State<edet2> {
               ),
             ),
             //0780
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Container(
@@ -116,7 +122,7 @@ class _edet2State extends State<edet2> {
               ),
             ),
             //cv
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Container(
@@ -146,11 +152,9 @@ class _edet2State extends State<edet2> {
               ),
             ),
 ////////////
-            SizedBox(
-              height: 30,
-            ),
+            sizedBox,
             Container(
-              margin: EdgeInsets.only(left: 200),
+              margin: const EdgeInsets.only(left: 200),
               height: 50,
               width: 80,
               decoration: BoxDecoration(
@@ -169,7 +173,7 @@ class _edet2State extends State<edet2> {
                     _saveData();
                     // }
                   },
-                  child: Text(
+                  child: const Text(
                     "Save",
                     style: TextStyle(color: Colors.white),
                   )),

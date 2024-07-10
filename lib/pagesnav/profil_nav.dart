@@ -1,6 +1,4 @@
 import 'dart:io';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:loginandprofilinfirbase/edeit_class/edit2.dart';
@@ -8,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+// ignore: camel_case_types
 class profile_nave extends StatefulWidget {
   const profile_nave({super.key});
 
@@ -15,6 +14,7 @@ class profile_nave extends StatefulWidget {
   State<profile_nave> createState() => _home_naveState();
 }
 
+// ignore: camel_case_types
 class _home_naveState extends State<profile_nave> {
   /////
 
@@ -33,7 +33,7 @@ class _home_naveState extends State<profile_nave> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 37, 5, 49),
+        backgroundColor: const Color.fromARGB(255, 37, 5, 49),
         title: const Center(
           child: Text(
             "~ edit profile ~            ",
@@ -58,20 +58,18 @@ class _home_naveState extends State<profile_nave> {
                 height: 40,
               ),
               Container(
-                child: Container(
-                  margin: EdgeInsets.only(right: 200),
-                  child: TextButton(
-                      onPressed: () {
-                        //g
-
-                        GoogleSignIn googleSignIn = GoogleSignIn();
-                        googleSignIn.disconnect();
-
-                        ///
-                        FirebaseAuth.instance.signOut();
-                      },
-                      child: Text("sign Out")),
-                ),
+                margin: const EdgeInsets.only(right: 200),
+                child: TextButton(
+                    onPressed: () {
+                      //g
+              
+                      GoogleSignIn googleSignIn = GoogleSignIn();
+                      googleSignIn.disconnect();
+              
+                      ///
+                      FirebaseAuth.instance.signOut();
+                    },
+                    child: const Text("sign Out")),
               )
             ],
           ),
@@ -83,20 +81,20 @@ class _home_naveState extends State<profile_nave> {
         decoration: const BoxDecoration(color: Color.fromARGB(255, 0, 0, 0)),
         child: ListView(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ///////
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Stack(children: [
                   //1
                   Container(
-                    margin: EdgeInsets.only(left: 150),
+                    margin: const EdgeInsets.only(left: 150),
                     height: 200,
                     width: 300,
                     decoration: const BoxDecoration(
@@ -114,7 +112,7 @@ class _home_naveState extends State<profile_nave> {
 
                   ///2
                   Container(
-                    margin: EdgeInsets.only(left: 170, top: 20),
+                    margin: const EdgeInsets.only(left: 170, top: 20),
                     child: Stack(children: [
                       Container(
                           height: 150,
@@ -128,7 +126,7 @@ class _home_naveState extends State<profile_nave> {
                                   backgroundImage: FileImage(
                                       _selectimage!), // الشرط الي يتحقق
                                 )
-                              : Center(child: Text("add imag"))
+                              : const Center(child: Text("add imag"))
                           /*    CircleAvatar(
                                 radius: 80,
                                 child: Image.asset(
@@ -142,113 +140,111 @@ class _home_naveState extends State<profile_nave> {
 
                       //علامة الزائد قرب الصورة
 
-                      Container(
-                        child: Positioned(
-                          //علامة الزائد قرب الصورة
-                          bottom: 0,
-
-                          right: 10,
-                          child: Container(
-                            width: 40,
-                            height: 40,
-                            decoration: const BoxDecoration(
-                                color: Color.fromARGB(255, 0, 7, 12),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(100))),
-                            child: IconButton(
-                              onPressed: () {
-                                showModalBottomSheet(
-                                    backgroundColor:
-                                        Color.fromARGB(255, 221, 214, 214),
-                                    context: context,
-                                    builder: (context) {
-                                      return SizedBox(
-                                        height: 300,
-                                        width: double.infinity,
-                                        child: Expanded(
-                                            child: Column(
-                                          children: [
-                                            const SizedBox(
-                                              height: 20,
-                                            ),
-                                            const Center(
-                                                child: Text(
-                                              "Please choose from gallery or camera",
-                                              style: TextStyle(
-                                                  color: Color.fromARGB(
-                                                      255, 58, 137, 183),
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.bold),
-                                            )),
-                                            const SizedBox(
-                                              height: 20,
-                                            ),
-                                            TextButton(
+                      Positioned(
+                        //علامة الزائد قرب الصورة
+                        bottom: 0,
+                      
+                        right: 10,
+                        child: Container(
+                          width: 40,
+                          height: 40,
+                          decoration: const BoxDecoration(
+                              color: Color.fromARGB(255, 0, 7, 12),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(100))),
+                          child: IconButton(
+                            onPressed: () {
+                              showModalBottomSheet(
+                                  backgroundColor:
+                                      const Color.fromARGB(255, 221, 214, 214),
+                                  context: context,
+                                  builder: (context) {
+                                    return SizedBox(
+                                      height: 300,
+                                      width: double.infinity,
+                                      child: Expanded(
+                                          child: Column(
+                                        children: [
+                                          const SizedBox(
+                                            height: 20,
+                                          ),
+                                          const Center(
+                                              child: Text(
+                                            "Please choose from gallery or camera",
+                                            style: TextStyle(
+                                                color: Color.fromARGB(
+                                                    255, 58, 137, 183),
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.bold),
+                                          )),
+                                          const SizedBox(
+                                            height: 20,
+                                          ),
+                                          TextButton(
+                                              onPressed: () {
+                                                getimage_in_gallery();
+                                              },
+                                              child: const Text(
+                                                  "Add image in gallery",
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 20,
+                                                      color: Colors.black))),
+                                          const Divider(
+                                            height: 20,
+                                            color: Color.fromARGB(
+                                                255, 147, 152, 154),
+                                          ),
+                                          TextButton(
+                                              onPressed: () {
+                                                getimage_in_camera();
+                                              },
+                                              child: const Text(
+                                                  "Add image in camera",
+                                                  style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 20))),
+                                          const Divider(
+                                            height: 20,
+                                            color: Color.fromARGB(
+                                                255, 147, 152, 154),
+                                          ),
+                                          Container(
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          20),
+                                                  border: Border.all(
+                                                      color: const Color.fromARGB(
+                                                          255, 97, 0, 172))),
+                                              child: TextButton(
                                                 onPressed: () {
-                                                  getimage_in_gallery();
+                                                  Delete_data_in_device();
                                                 },
                                                 child: const Text(
-                                                    "Add image in gallery",
-                                                    style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize: 20,
-                                                        color: Colors.black))),
-                                            const Divider(
-                                              height: 20,
-                                              color: Color.fromARGB(
-                                                  255, 147, 152, 154),
-                                            ),
-                                            TextButton(
-                                                onPressed: () {
-                                                  getimage_in_camera();
-                                                },
-                                                child: const Text(
-                                                    "Add image in camera",
-                                                    style: TextStyle(
-                                                        color: Colors.black,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize: 20))),
-                                            const Divider(
-                                              height: 20,
-                                              color: Color.fromARGB(
-                                                  255, 147, 152, 154),
-                                            ),
-                                            Container(
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            20),
-                                                    border: Border.all(
-                                                        color: Color.fromARGB(
-                                                            255, 97, 0, 172))),
-                                                child: TextButton(
-                                                  onPressed: () {
-                                                    Delete_data_in_device();
-                                                  },
-                                                  child: const Text(
-                                                    "Remove image",
-                                                    style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        color: Color.fromARGB(
-                                                            255, 181, 0, 241),
-                                                        fontSize: 20),
-                                                  ),
-                                                )),
-                                          ],
-                                        )),
-                                      );
-                                    });
-                              },
-                              icon: const Center(
-                                child: Center(
-                                  child: Icon(Icons.add,
-                                      size: 25,
-                                      color:
-                                          Color.fromARGB(255, 235, 234, 238)),
-                                ),
+                                                  "Remove image",
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Color.fromARGB(
+                                                          255, 181, 0, 241),
+                                                      fontSize: 20),
+                                                ),
+                                              )),
+                                        ],
+                                      )),
+                                    );
+                                  });
+                            },
+                            icon: const Center(
+                              child: Center(
+                                child: Icon(Icons.add,
+                                    size: 25,
+                                    color:
+                                        Color.fromARGB(255, 235, 234, 238)),
                               ),
                             ),
                           ),
@@ -259,7 +255,7 @@ class _home_naveState extends State<profile_nave> {
                 ]),
 
                 ////////////////////
-                SizedBox(height: 50),
+                const SizedBox(height: 50),
                 //
 
                 Text(
@@ -271,11 +267,11 @@ class _home_naveState extends State<profile_nave> {
                 ),
 
                 //////////////////
-                edet2(),
+                const edet2(),
 
                 //////////////////
 
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
               ],
             ),
           ],
@@ -285,6 +281,7 @@ class _home_naveState extends State<profile_nave> {
   }
   //_______________________________________________________________
 
+  // ignore: non_constant_identifier_names
   Future getimage_in_gallery() async {
     final retunImage =
         await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -297,6 +294,7 @@ class _home_naveState extends State<profile_nave> {
     save_data_in_device(_selectimage!.path);
   }
 
+  // ignore: non_constant_identifier_names
   Future getimage_in_camera() async {
     final retunImage =
         await ImagePicker().pickImage(source: ImageSource.camera);
@@ -307,12 +305,14 @@ class _home_naveState extends State<profile_nave> {
     save_data_in_device(_selectimage!.path);
   }
 
+  // ignore: non_constant_identifier_names
   void save_data_in_device(String svimg) async {
     final pref = await SharedPreferences.getInstance();
     pref.setString("save_image", svimg);
     get_data_in_device();
   }
 
+  // ignore: non_constant_identifier_names
   void get_data_in_device() async {
     final pref = await SharedPreferences.getInstance();
     setState(() {
@@ -323,6 +323,7 @@ class _home_naveState extends State<profile_nave> {
     });
   }
 
+  // ignore: non_constant_identifier_names
   void Delete_data_in_device() async {
     final pref = await SharedPreferences.getInstance();
     pref.remove("save_image");

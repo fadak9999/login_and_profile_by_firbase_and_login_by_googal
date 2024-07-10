@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:loginandprofilinfirbase/pagesnav/add_nav.dart';
 import 'package:loginandprofilinfirbase/pagesnav/home_nav.dart';
 import 'package:loginandprofilinfirbase/pagesnav/profil_nav.dart';
-import 'package:loginandprofilinfirbase/pagesnav/search_nav.dart';
 
+// ignore: camel_case_types
 class home extends StatefulWidget {
   const home({super.key});
 
@@ -11,15 +11,17 @@ class home extends StatefulWidget {
   State<home> createState() => _homeState();
 }
 
+// ignore: camel_case_types
 class _homeState extends State<home> {
   //
 
   int currentIndexH = 0;
   List<Widget> bodyteyAPP = [
-    profile_nave(),
-    home_nav(),
-    add_nav(),
-    search_nav(),
+    const Home(),
+    const profile_nave(),
+
+    const AddFirebase(),
+    //const EditFirebase(),
   ];
 
   //
@@ -29,7 +31,7 @@ class _homeState extends State<home> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.black,
-        drawer: Drawer(),
+        drawer: const Drawer(),
 
         body: Center(
           child: bodyteyAPP[(currentIndexH)],
