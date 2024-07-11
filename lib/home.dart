@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:loginandprofilinfirbase/pagesnav/AddFirebase.dart';
-import 'package:loginandprofilinfirbase/pagesnav/home_nav.dart';
-import 'package:loginandprofilinfirbase/pagesnav/profil_nav.dart';
+import 'package:loginandprofilinfirbase/Firestore/AddFirebase.dart';
+import 'package:loginandprofilinfirbase/Firestore/home_nav.dart';
+import 'package:loginandprofilinfirbase/Firestore/profil_nav.dart';
 
 // ignore: camel_case_types
 class home extends StatefulWidget {

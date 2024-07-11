@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:loginandprofilinfirbase/class_nav/gridview_in_home_nav.dart';
-import 'package:loginandprofilinfirbase/pagesnav/AddFirebase.dart';
+import 'package:loginandprofilinfirbase/Firestore/AddFirebase.dart';
 
 // ignore: camel_case_types
 class Home_nav extends StatefulWidget {
@@ -18,6 +18,7 @@ class _HomeState extends State<Home_nav> {
   ///////////////
 
   late List<Map<String, dynamic>> data = [];
+  /////////////////
   @override
   void initState() {
     getData();
@@ -63,7 +64,10 @@ class _HomeState extends State<Home_nav> {
   Widget task() {
     if (data.isEmpty) {
       return const Center(
-        child: Text("it's empty"),
+        child: Text(
+          "it's empty",
+          style: TextStyle(fontSize: 30, color: Colors.white),
+        ),
       );
     } else {
       return const gridview_in_home_nav();
