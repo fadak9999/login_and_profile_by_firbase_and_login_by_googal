@@ -1,4 +1,5 @@
 // ignore_for_file: avoid_print
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -25,8 +26,6 @@ class _HomeState extends State<Home_nav> {
     super.initState();
   }
 
-  /////
-  bool f = false;
 //////////////////////___________     getData     ______________/////////////////////////////////////////////////
   Future<void> getData() async {
     try {

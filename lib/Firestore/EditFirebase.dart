@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:loginandprofilinfirbase/home.dart';
 
 class EditFirebase extends StatefulWidget {
+  //////////////////////////////////////////////////////////////////////////////
   final String docid;
   final String Oldname;
   const EditFirebase({super.key, required this.docid, required this.Oldname});
@@ -12,7 +13,7 @@ class EditFirebase extends StatefulWidget {
   @override
   State<EditFirebase> createState() => _EditFirebaseState();
 }
-
+/////////////////////////////////////////////////////
 class _EditFirebaseState extends State<EditFirebase> {
   ////////////////////////////////////////////////////////////////////////
   final _editInFirebaseController = TextEditingController();

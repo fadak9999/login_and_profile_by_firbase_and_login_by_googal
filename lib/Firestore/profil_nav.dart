@@ -62,10 +62,10 @@ class _home_naveState extends State<profile_nave> {
                 child: TextButton(
                     onPressed: () {
                       //g
-              
+
                       GoogleSignIn googleSignIn = GoogleSignIn();
                       googleSignIn.disconnect();
-              
+
                       ///
                       FirebaseAuth.instance.signOut();
                     },
@@ -139,7 +139,69 @@ class _home_naveState extends State<profile_nave> {
                           ),
 
                       //علامة الزائد قرب الصورة
+                      Positioned(
+                        bottom: 0,
+                        right: 0,
+                        child: Container(
+                          width: 40,
+                          height: 40,
+                          decoration: const BoxDecoration(
+                              color: Color.fromARGB(255, 0, 7, 12),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(100))),
+                          //
+                          child: IconButton(
+                            onPressed: () {
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AlertDialog(
+                                    title: const Text(
+                                        "Please choose from gallery or camera"),
+                                    actions: [
+                                      TextButton(
+                                          onPressed: () {
+                                            getimage_in_gallery();
+                                          },
+                                          child: const Text(
+                                              "Add image in gallery")),
+                                      TextButton(
+                                          onPressed: () {
+                                            getimage_in_camera();
+                                          },
+                                          child: const Text(
+                                              "Add image in camera")),
+                                      TextButton(
+                                          onPressed: () {
+                                            Delete_data_in_device();
+                                          },
+                                          child: const Text("Remove image")),
+                                      IconButton(
+                                          onPressed: () {},
+                                          icon: const Icon(
+                                            Icons.party_mode,
+                                            color: Colors.blue,
+                                            size: 40,
+                                          ))
+                                    ],
+                                  );
+                                },
+                              );
+                            },
 
+                            ///
+                            icon: const Center(
+                              child: Center(
+                                child: Icon(Icons.add,
+                                    size: 25,
+                                    color: Color.fromARGB(255, 235, 234, 238)),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+/////////////
+/*
                       Positioned(
                         //علامة الزائد قرب الصورة
                         bottom: 0,
@@ -250,6 +312,8 @@ class _home_naveState extends State<profile_nave> {
                           ),
                         ),
                       ),
+                      */
+                      ///////////////------------
                     ]),
                   ),
                 ]),
