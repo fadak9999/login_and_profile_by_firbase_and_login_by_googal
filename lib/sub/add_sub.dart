@@ -4,46 +4,38 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:loginandprofilinfirbase/nav.dart';
 
-class EditFirebase extends StatefulWidget {
-  //////////////////////////////////////////////////////////////////////////////
+class add_sub extends StatefulWidget {
   final String docid;
-  final String Oldname;
-  const EditFirebase({super.key, required this.docid, required this.Oldname});
+  const add_sub({super.key, required this.docid});
 
   @override
-  State<EditFirebase> createState() => _EditFirebaseState();
+  State<add_sub> createState() => _add_subState();
 }
 
-/////////////////////////////////////////////////////
-class _EditFirebaseState extends State<EditFirebase> {
-  ////////////////////////////////////////////////////////////////////////
-  final _editInFirebaseController = TextEditingController();
+class _add_subState extends State<add_sub> {
+  /////
+  final _sub_nameController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
-    _editInFirebaseController.dispose();
+    _sub_nameController.dispose();
     super.dispose();
   }
+//////////////////////////////////////////////////////////////////////////////////
 
-  @override
-  void initState() {
-    super.initState();
-    _editInFirebaseController.text = widget.Oldname;
-  }
-
-////////////////////////////////////////////////////////////
-  CollectionReference users = FirebaseFirestore.instance.collection('users');
-
-  Future<void> EditUser() async {
-    await users
+  Future add_sub() {
+    CollectionReference sub_coll = FirebaseFirestore.instance
+        .collection('users')
         .doc(widget.docid)
-        .update({"name": _editInFirebaseController.text}).then((value) =>
-            ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Data Edit successfully'))));
+        .collection('sub');
+    return sub_coll.add({
+      "sub": _sub_nameController.text,
+    }).then((value) => ScaffoldMessenger.of(context)
+        .showSnackBar(const SnackBar(content: Text('Data ADD successfully'))));
   }
 
-//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,7 +43,7 @@ class _EditFirebaseState extends State<EditFirebase> {
         backgroundColor: Colors.deepPurple,
         centerTitle: true,
         title: const Text(
-          "Edit in Firebase",
+          "Add in sub  Firebase",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
@@ -62,7 +54,7 @@ class _EditFirebaseState extends State<EditFirebase> {
                 end: Alignment.bottomCenter,
                 colors: [
               Color.fromARGB(255, 52, 170, 189),
-              Color.fromARGB(255, 161, 54, 232)
+              Color.fromARGB(255, 161, 54, 232),
             ])),
         child: Form(
           key: _formKey,
@@ -72,9 +64,9 @@ class _EditFirebaseState extends State<EditFirebase> {
               Padding(
                 padding: const EdgeInsets.all(20),
                 child: TextFormField(
-                  controller: _editInFirebaseController,
+                  controller: _sub_nameController,
                   decoration: const InputDecoration(
-                    labelText: 'Edit',
+                    labelText: 'Name',
                     border: OutlineInputBorder(),
                     prefixIcon: Icon(Icons.person),
                   ),
@@ -94,15 +86,14 @@ class _EditFirebaseState extends State<EditFirebase> {
                   ),
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      EditUser();
+                      add_sub();
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => const home()));
-
                       setState(() {});
                     }
                   },
                   child: const Text(
-                    "Edit ",
+                    "ADD",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.white,

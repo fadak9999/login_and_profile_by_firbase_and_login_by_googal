@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
-import 'package:loginandprofilinfirbase/home.dart';
+import 'package:loginandprofilinfirbase/nav.dart';
 
 class AddFirebase extends StatefulWidget {
   const AddFirebase({super.key});

@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:loginandprofilinfirbase/firebase/login.dart';
-import 'package:loginandprofilinfirbase/home.dart';
+import 'package:loginandprofilinfirbase/nav.dart';
 
 // ignore: camel_case_types
 class auth extends StatefulWidget {

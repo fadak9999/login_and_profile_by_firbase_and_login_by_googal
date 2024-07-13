@@ -11,7 +11,7 @@ class edet2 extends StatefulWidget {
 
 // ignore: camel_case_types
 class _edet2State extends State<edet2> {
-  //
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   //final _formKey = GlobalKey<FormState>(); //متغير لدالة التنبيه في النص
   final _nameController = TextEditingController();
@@ -21,6 +21,7 @@ class _edet2State extends State<edet2> {
   @override
   void initState() {
     super.initState();
+
     _loadData();
   }
 
@@ -32,7 +33,7 @@ class _edet2State extends State<edet2> {
     super.dispose();
   }
 
-//SharedPreferences
+//SharedPreferences////////////////////////////
   _loadData() async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
@@ -52,7 +53,7 @@ class _edet2State extends State<edet2> {
         .showSnackBar(const SnackBar(content: Text('Data saved successfully')));
   }
 
-  ///
+  /////SharedPreferences////////////////////////////
   @override
   Widget build(BuildContext context) {
     const sizedBox = SizedBox(
@@ -169,9 +170,7 @@ class _edet2State extends State<edet2> {
               ),
               child: TextButton(
                   onPressed: () {
-                    //  if (_formKey.currentState!.validate()) {
                     _saveData();
-                    // }
                   },
                   child: const Text(
                     "Save",

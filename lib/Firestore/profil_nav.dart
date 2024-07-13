@@ -75,7 +75,7 @@ class _home_naveState extends State<profile_nave> {
           ),
         ),
       ),
-      //
+      ///////////////////////////////////////////
 
       body: Container(
         decoration: const BoxDecoration(color: Color.fromARGB(255, 0, 0, 0)),
@@ -126,17 +126,7 @@ class _home_naveState extends State<profile_nave> {
                                   backgroundImage: FileImage(
                                       _selectimage!), // الشرط الي يتحقق
                                 )
-                              : const Center(child: Text("add imag"))
-                          /*    CircleAvatar(
-                                radius: 80,
-                                child: Image.asset(
-                                  // اذا ما تحقق الشرط
-                                  "assets/two.png",
-                                  height: 200,
-                                ),
-                              ),
-                              */
-                          ),
+                              : const Center(child: Text("add imag"))),
 
                       //علامة الزائد قرب الصورة
                       Positioned(
@@ -200,119 +190,7 @@ class _home_naveState extends State<profile_nave> {
                           ),
                         ),
                       ),
-/////////////
-/*
-                      Positioned(
-                        //علامة الزائد قرب الصورة
-                        bottom: 0,
-                      
-                        right: 10,
-                        child: Container(
-                          width: 40,
-                          height: 40,
-                          decoration: const BoxDecoration(
-                              color: Color.fromARGB(255, 0, 7, 12),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(100))),
-                          child: IconButton(
-                            onPressed: () {
-                              showModalBottomSheet(
-                                  backgroundColor:
-                                      const Color.fromARGB(255, 221, 214, 214),
-                                  context: context,
-                                  builder: (context) {
-                                    return SizedBox(
-                                      height: 300,
-                                      width: double.infinity,
-                                      child: Expanded(
-                                          child: Column(
-                                        children: [
-                                          const SizedBox(
-                                            height: 20,
-                                          ),
-                                          const Center(
-                                              child: Text(
-                                            "Please choose from gallery or camera",
-                                            style: TextStyle(
-                                                color: Color.fromARGB(
-                                                    255, 58, 137, 183),
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.bold),
-                                          )),
-                                          const SizedBox(
-                                            height: 20,
-                                          ),
-                                          TextButton(
-                                              onPressed: () {
-                                                getimage_in_gallery();
-                                              },
-                                              child: const Text(
-                                                  "Add image in gallery",
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 20,
-                                                      color: Colors.black))),
-                                          const Divider(
-                                            height: 20,
-                                            color: Color.fromARGB(
-                                                255, 147, 152, 154),
-                                          ),
-                                          TextButton(
-                                              onPressed: () {
-                                                getimage_in_camera();
-                                              },
-                                              child: const Text(
-                                                  "Add image in camera",
-                                                  style: TextStyle(
-                                                      color: Colors.black,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 20))),
-                                          const Divider(
-                                            height: 20,
-                                            color: Color.fromARGB(
-                                                255, 147, 152, 154),
-                                          ),
-                                          Container(
-                                              decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          20),
-                                                  border: Border.all(
-                                                      color: const Color.fromARGB(
-                                                          255, 97, 0, 172))),
-                                              child: TextButton(
-                                                onPressed: () {
-                                                  Delete_data_in_device();
-                                                },
-                                                child: const Text(
-                                                  "Remove image",
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      color: Color.fromARGB(
-                                                          255, 181, 0, 241),
-                                                      fontSize: 20),
-                                                ),
-                                              )),
-                                        ],
-                                      )),
-                                    );
-                                  });
-                            },
-                            icon: const Center(
-                              child: Center(
-                                child: Icon(Icons.add,
-                                    size: 25,
-                                    color:
-                                        Color.fromARGB(255, 235, 234, 238)),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      */
+
                       ///////////////------------
                     ]),
                   ),

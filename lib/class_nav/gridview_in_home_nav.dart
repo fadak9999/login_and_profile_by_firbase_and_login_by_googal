@@ -4,6 +4,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:loginandprofilinfirbase/Firestore/EditFirebase.dart';
+import 'package:loginandprofilinfirbase/sub/home_sub.dart';
 
 // ignore: camel_case_types
 class gridview_in_home_nav extends StatefulWidget {
@@ -16,6 +17,7 @@ class gridview_in_home_nav extends StatefulWidget {
 // ignore: camel_case_types
 class _gridview_in_home_navState extends State<gridview_in_home_nav> {
 //////////////////////////
+
   late List<Map<String, dynamic>> data = [];
   //////////////////////////////
 
@@ -78,6 +80,13 @@ class _gridview_in_home_navState extends State<gridview_in_home_nav> {
                   crossAxisCount: 2),
               itemBuilder: (context, i) {
                 return InkWell(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => home_sub(
+                              docid: data[i]['id'],
+                              name_appbar: data[i]["name"],
+                            )));
+                  },
                   onLongPress: () {
                     AwesomeDialog(
                       context: context,
