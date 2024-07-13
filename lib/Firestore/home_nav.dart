@@ -60,7 +60,7 @@ class _HomeState extends State<Home_nav> {
 
 ///////////////////////_________task_____//////////////////////////////////////////
 
-  Widget task() {
+  task() {
     if (data.isEmpty) {
       return const Center(
         child: Text(
@@ -88,7 +88,8 @@ class _HomeState extends State<Home_nav> {
           color: Colors.purple,
         ),
       ),
-      body: Container(
+      body: task(),
+      /*Container(
         decoration: const BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topCenter,
@@ -99,6 +100,7 @@ class _HomeState extends State<Home_nav> {
             ])),
         child: task(),
       ),
+      */
     );
   }
 }
